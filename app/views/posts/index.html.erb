@@ -1,0 +1,17 @@
+<h1>Posts</h1>
+<% if !current_user %>
+    <p><%= link_to 'Register', new_user_registration_path %></p>
+    <p><%= link_to 'Sign In', new_user_session_path %></p>
+<% else %>
+    <p><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></p>
+    <p><%= link_to 'New Post', new_post_path %></p>
+<% end %>
+
+<% @posts.each do |post| %>
+
+    <p><%= post.body %></p>
+    <% if user_signed_in? %>
+        <h5><%= post.user.email %></h5>
+    <% end %>
+
+<% end %>
